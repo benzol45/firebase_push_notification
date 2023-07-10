@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class PushController {
     private final PushService pushService;
@@ -23,7 +25,8 @@ public class PushController {
 
     @PostMapping("/subscribe")
     public String subscribe(@RequestParam("token") String token) {
-        System.out.println("recived token: " + token);
+        System.out.println("recived token: " + token + "\n"+ "At time: " + LocalDateTime.now());
+
         pushService.startSendingTestNotification(token);
 
         return "main";
